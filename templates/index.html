@@ -1,13 +1,35 @@
-<!-- index.html -->
 {% extends 'base.html' %}
-{% block title %} 歡迎光臨我的部落格 {% endblock %}
-{% block headmessage %} 
-    <h3 style='font-family:標楷體;'>本站文章列表</a>
-{% endblock %}
-{% block content %} 
-    {% for post in posts %}
-        <p style='font-family:微軟正黑體;font-size:14pt;font-weight:bold;'>
-            <a href='/polls/post/{{post.slug}}'>{{ post.title }}</a>
-        </p>
+{% block title %} 電影欣賞 {% endblock %}
+{% block headmessage %} {{headMessage}} {% endblock %}
+{% block content %}
+{% if request.user.is_authenticated %}
+<h3>以下是本網站預測的下期大樂透號碼</h3>
+<table class='table table-striped table-bordered'>
+  <tr><td>特別號：{{ special_number }}</td><td colspan=5>超神準預測，總有一天會中</td></tr>
+  <tr>
+    {% for no in lotto_numbers %}
+    <td>
+      {{ no }}
+    </td>
     {% endfor %}
+  </tr>
+</table>
+{% endif %}
+{{request.user.is_authenticated}}
+<table class='table table-striped table-bordered'>
+    {% for i in posts %}
+    
+        
+            <tr>
+                <td>
+                    <a href="/post/{{i.id}}"> {{i.title}} </a>
+
+                </td>
+            </tr>
+
+       
+        
+
+    {% endfor %}
+</table>
 {% endblock %}

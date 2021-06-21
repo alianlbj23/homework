@@ -1,12 +1,26 @@
-<!-- post.html -->
 {% extends 'base.html' %}
-{% block title %} {{ post.title }} - 文學天地 {% endblock %}
-{% block headmessage %}
-    <h3 style='font-family:微軟正黑體;'>{{ post.title }}</h3>
-    <a style='font-family:微軟正黑體;' href='/polls'>回首頁</a>
+{% block title %} {{headMessage}} {% endblock %}
+{% include 'header.html' %}
+{% block content %}
+<p>
+    {{post.body}}
+</p>
+
+<a href="/">首頁</a>
+
+<table class='table table-striped table-bordered'>
+	<tr>
+		<td>標題</td>
+		<td>{{target.title}}</td>
+	</tr>
+	<tr>
+		<td>張貼日期</td>
+		<td>{{target.pub_date}}</td>
+	</tr>
+	<tr>
+		<td>內容</td>
+		<td>{{target.body}}</td>
+	</tr>
+</table>
 {% endblock %}
-{% block content %} 
-        <p style='font-family:微軟正黑體;font-size:12pt;letter-spacing:2pt;'>
-            {{ post.body }}</a>
-        </p>
-{% endblock %}
+{% include 'footer.html' %}
